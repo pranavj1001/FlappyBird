@@ -31,15 +31,16 @@ public class FlappyBird extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-		if(Gdx.input.justTouched()){
-            Gdx.app.log("Log","Touched");
-            gameState = 1;
-        }
-
         if(gameState != 0) {
 
-            velocity++;
-            birdY -= velocity;
+            if(Gdx.input.justTouched()){
+                velocity = -30;
+            }
+
+            if(birdY > 0 || velocity < 0){
+                velocity++;
+                birdY -= velocity;
+            }
 
         }else{
 
