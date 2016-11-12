@@ -26,6 +26,8 @@ public class FlappyBird extends ApplicationAdapter {
     float maxTubeOffset;
     Random random;
     float tubeOffset;
+    float tubeVelocity = 4;
+    float tubeX;
 	
 	@Override
 	public void create () {
@@ -55,10 +57,13 @@ public class FlappyBird extends ApplicationAdapter {
             if(Gdx.input.justTouched()){
                 velocity = -30;
                 tubeOffset = (random.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 200);
+                tubeX = Gdx.graphics.getWidth()/2 - topTube.getWidth()/2;
             }
 
-            batch.draw(topTube,Gdx.graphics.getWidth()/2 - topTube.getWidth()/2,Gdx.graphics.getHeight()/2 + gap/2 + tubeOffset);
-            batch.draw(bottomTube,Gdx.graphics.getWidth()/2 - bottomTube.getWidth()/2,Gdx.graphics.getHeight()/2 - gap/2 - bottomTube.getHeight()+ tubeOffset);
+            tubeX -= 4;
+
+            batch.draw(topTube, tubeX,Gdx.graphics.getHeight()/2 + gap/2 + tubeOffset);
+            batch.draw(bottomTube, tubeX,Gdx.graphics.getHeight()/2 - gap/2 - bottomTube.getHeight()+ tubeOffset);
 
             if(birdY > 0 || velocity < 0){
                 velocity += gravity;
