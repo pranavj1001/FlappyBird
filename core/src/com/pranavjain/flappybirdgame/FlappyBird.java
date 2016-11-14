@@ -43,6 +43,7 @@ public class FlappyBird extends ApplicationAdapter {
 
     int score = 0;
     int scoringTube = 0;
+    BitmapFont bitmapFont;
 
 	@Override
 	public void create () {
@@ -50,6 +51,9 @@ public class FlappyBird extends ApplicationAdapter {
 		background = new Texture("bg.png");
         shapeRenderer = new ShapeRenderer();
         birdCircle = new Circle();
+        bitmapFont = new BitmapFont();
+        bitmapFont.setColor(Color.WHITE);
+        bitmapFont.getData().setScale(10);
 
         birds = new Texture[2];
         birds[0] = new Texture("bird.png");
@@ -134,6 +138,7 @@ public class FlappyBird extends ApplicationAdapter {
         }
 
         batch.draw(birds[flapState], Gdx.graphics.getWidth() / 2 - birds[flapState].getWidth() / 2, birdY);
+        bitmapFont.draw(batch, String.valueOf(score), 100, 200);
         batch.end();
 
         birdCircle.set(Gdx.graphics.getWidth()/2,birdY + birds[flapState].getHeight()/2, birds[flapState].getWidth()/2);
