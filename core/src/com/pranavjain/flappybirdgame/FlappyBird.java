@@ -97,7 +97,7 @@ public class FlappyBird extends ApplicationAdapter {
         batch.begin();
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        if(gameState != 0) {
+        if(gameState == 1) {
 
             if(tubeX[scoringTube] < Gdx.graphics.getWidth() / 2){
                 score++;
@@ -130,15 +130,25 @@ public class FlappyBird extends ApplicationAdapter {
 
             }
 
-            if(birdY > 0 || velocity < 0){
-                velocity += gravity;
+            if (birdY > 0) {
+                velocity = velocity + gravity;
                 birdY -= velocity;
+            } else {
+                gameState = 2;
             }
 
-        }else{
-
-            if(Gdx.input.justTouched()){
+        } else if (gameState == 0) {
+            if (Gdx.input.justTouched()) {
                 gameState = 1;
+            }
+        } else if (gameState == 2) {
+            batch.draw(gameover, Gdx.graphics.getWidth() / 2 - gameover.getWidth() / 2, Gdx.graphics.getHeight() / 2 - gameover.getHeight() / 2);
+            if (Gdx.input.justTouched()) {
+                gameState = 1;
+                startGame();
+                score = 0;
+                scoringTube = 0;
+                velocity = 0;
             }
         }
 
@@ -164,6 +174,7 @@ public class FlappyBird extends ApplicationAdapter {
 
             if(Intersector.overlaps(birdCircle, topTubeRectangles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])){
                 //Gdx.app.log("App Report","Collision occured!");
+                gameState = 2;
             }
 
         }
