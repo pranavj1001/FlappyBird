@@ -18,6 +18,7 @@ public class FlappyBird extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture background;
     ShapeRenderer shapeRenderer;
+    Texture gameover;
 
     Texture[] birds;
     int flapState = 0;
@@ -54,6 +55,7 @@ public class FlappyBird extends ApplicationAdapter {
         bitmapFont = new BitmapFont();
         bitmapFont.setColor(Color.WHITE);
         bitmapFont.getData().setScale(10);
+        gameover = new Texture("gameover.png");
 
         birds = new Texture[2];
         birds[0] = new Texture("bird.png");
@@ -68,17 +70,26 @@ public class FlappyBird extends ApplicationAdapter {
         topTubeRectangles = new Rectangle[numberOfTubes];
         bottomTubeRectangles = new Rectangle[numberOfTubes];
 
-        for(int i = 0; i < numberOfTubes; i++){
+        startGame();
+
+	}
+
+    public void startGame() {
+
+        birdY = Gdx.graphics.getHeight() / 2 - birds[0].getHeight() / 2;
+
+        for (int i = 0; i < numberOfTubes; i++) {
 
             tubeOffset[i] = (random.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 200);
-            tubeX[i] = Gdx.graphics.getWidth()/2 - topTube.getWidth()/2 + Gdx.graphics.getWidth() + i*distanceBetweenTubes;
+
+            tubeX[i] = Gdx.graphics.getWidth() / 2 - topTube.getWidth() / 2 + Gdx.graphics.getWidth() + i * distanceBetweenTubes;
 
             topTubeRectangles[i] = new Rectangle();
             bottomTubeRectangles[i] = new Rectangle();
 
         }
 
-	}
+    }
 
 	@Override
 	public void render () {
