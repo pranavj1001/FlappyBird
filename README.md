@@ -6,4 +6,4 @@ Hey there,
 This game (android app) is my approach to build the famous Flappy Bird game.
 I've used libGDX to do so.
 
-Note: The game is not completed and will be completed shortly.
+Note: The game is working fine and can be used, however I just have to clean and organize the main code which will be done soon.
