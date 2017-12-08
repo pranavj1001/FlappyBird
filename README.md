@@ -13,3 +13,7 @@ Note: The game is working fine and can be used, however I just have to clean and
 <p align="center">
 <img src="ScreenShot.png">
 </p>
+
+## License
+
+MIT License
