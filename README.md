@@ -11,7 +11,7 @@ Note: The game is working fine and can be used, however I just have to clean and
 ## ScreenShot
 
 <p align="center">
-<img src="ScreenShot.png">
+<img src="ScreenShot.png" width=350px>
 </p>
 
 ## License
